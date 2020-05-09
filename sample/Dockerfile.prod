@@ -8,12 +8,13 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 COPY package*.json ./
 
-RUN npm ci --silent
-RUN npm install react-scripts@3.4.1 -g --no-install-recommends --silent
+RUN yarn
+
+RUN yarn global add react-scripts@3.4.1
 
 COPY . ./
 
-RUN npm run build
+RUN yarn run build
 
 # production environment
 FROM nginx:stable-alpine
